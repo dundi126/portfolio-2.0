@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f7f7f2;
+  color: #141512;
+  font-family: var(--font-sans), sans-serif;
+}
+
+::selection {
+  color: #f7f7f2;
+  background: #141512;
+}
+
+:focus-visible {
+  outline: 2px solid #ff5d3a;
+  outline-offset: 4px;
+}
+
+.font-serif {
+  font-family: var(--font-serif), serif;
+}
+
+.grain::before {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+}
+
+.project-grid {
+  background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #bbbdb4 transparent;
+}
