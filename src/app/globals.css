@@ -16,7 +16,8 @@ html {
 
 body {
   margin: 0;
-  background: #f7f7f2;
+  overflow-x: hidden;
+  background: #f3f3ee;
   color: #141512;
   font-family: var(--font-sans), sans-serif;
 }
@@ -45,13 +46,63 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
 }
 
+.atmosphere {
+  background:
+    radial-gradient(circle at 23% 22%, rgba(255, 255, 245, 0.92) 0, rgba(219, 226, 227, 0.65) 29%, transparent 57%),
+    linear-gradient(135deg, #e9ece8 0%, #c4ced8 55%, #a8b8cc 100%);
+}
+
+.atmosphere::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.hero-glow {
+  position: absolute;
+  right: -4%;
+  top: 18%;
+  width: min(38vw, 480px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(45, 89, 157, 0.92) 0%, rgba(70, 111, 172, 0.62) 34%, rgba(86, 123, 177, 0.2) 59%, transparent 74%);
+  filter: blur(20px);
+}
+
 .project-grid {
   background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
+.work-card:nth-child(4n + 2) .project-art,
+.work-card:nth-child(4n + 3) .project-art {
+  transform-origin: center;
+}
+
 .modal-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #bbbdb4 transparent;
+  scrollbar-color: #55564f transparent;
+}
+
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: 0;
+  }
+
+  .hero-glow {
+    right: -30%;
+    top: 30%;
+    width: 92vw;
+    opacity: 0.72;
+  }
+
+  .project-grid {
+    background-size: 22px 22px;
+  }
 }

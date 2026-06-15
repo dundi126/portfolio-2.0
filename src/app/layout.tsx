@@ -10,9 +10,9 @@ const serif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Carter — Product Designer",
+  title: "Dundi Vignesh Gutti — Full-Stack AI Engineer",
   description:
-    "Portfolio of Alex Carter, a product designer creating thoughtful digital experiences.",
+    "Portfolio of Dundi Vignesh Gutti, a Full-Stack AI Engineer building production-grade AI systems and scalable software.",
 };
 
 export default function RootLayout({
