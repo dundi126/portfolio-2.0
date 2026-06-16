@@ -10,7 +10,7 @@ const serif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Dundi Vignesh Gutti — Full-Stack AI Engineer",
+  title: "Dundi Gutti - Portfolio2.0",
   description:
     "Portfolio of Dundi Vignesh Gutti, a Full-Stack AI Engineer building production-grade AI systems and scalable software.",
 };

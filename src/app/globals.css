@@ -64,14 +64,15 @@ body {
 
 .hero-glow {
   position: absolute;
-  right: -4%;
-  top: 18%;
-  width: min(38vw, 480px);
+  right: 7%;
+  top: 27%;
+  width: min(30vw, 360px);
   aspect-ratio: 1;
   border-radius: 999px;
+  opacity: 0.82;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(45, 89, 157, 0.92) 0%, rgba(70, 111, 172, 0.62) 34%, rgba(86, 123, 177, 0.2) 59%, transparent 74%);
-  filter: blur(20px);
+  background: radial-gradient(circle, rgba(45, 89, 157, 0.76) 0%, rgba(70, 111, 172, 0.48) 33%, rgba(86, 123, 177, 0.16) 58%, transparent 76%);
+  filter: blur(28px);
 }
 
 .project-grid {
@@ -98,8 +99,8 @@ body {
   .hero-glow {
     right: -30%;
     top: 30%;
-    width: 92vw;
-    opacity: 0.72;
+    width: 72vw;
+    opacity: 0.56;
   }
 
   .project-grid {

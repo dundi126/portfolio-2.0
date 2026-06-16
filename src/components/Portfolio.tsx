@@ -51,25 +51,46 @@ function HeroGlow() {
   const reduceMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 45, damping: 18, mass: 1.2 });
-  const springY = useSpring(y, { stiffness: 45, damping: 18, mass: 1.2 });
+  const springX = useSpring(x, { stiffness: 34, damping: 20, mass: 1.45 });
+  const springY = useSpring(y, { stiffness: 34, damping: 20, mass: 1.45 });
 
   useEffect(() => {
+    if (reduceMotion) return;
+
+    let pointerX = 0;
+    let pointerY = 0;
+    let animationFrame = 0;
+
     const move = (event: PointerEvent) => {
-      if (reduceMotion || window.innerWidth < 640) return;
-      x.set(((event.clientX / window.innerWidth) - 0.5) * 120);
-      y.set(((event.clientY / window.innerHeight) - 0.5) * 90);
+      if (window.innerWidth < 640) return;
+      pointerX = ((event.clientX / window.innerWidth) - 0.5) * 72;
+      pointerY = ((event.clientY / window.innerHeight) - 0.5) * 52;
     };
     const reset = () => {
-      x.set(0);
-      y.set(0);
+      pointerX = 0;
+      pointerY = 0;
+    };
+    const drift = () => {
+      if (window.innerWidth < 640) {
+        x.set(0);
+        y.set(0);
+        animationFrame = window.requestAnimationFrame(drift);
+        return;
+      }
+
+      const time = Date.now() / 1000;
+      x.set(pointerX + Math.sin(time * 0.34) * 10 + Math.sin(time * 0.17) * 4);
+      y.set(pointerY + Math.cos(time * 0.28) * 8);
+      animationFrame = window.requestAnimationFrame(drift);
     };
 
     window.addEventListener("pointermove", move);
     window.addEventListener("blur", reset);
+    animationFrame = window.requestAnimationFrame(drift);
     return () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("blur", reset);
+      window.cancelAnimationFrame(animationFrame);
     };
   }, [reduceMotion, x, y]);
 
@@ -154,7 +175,7 @@ export default function Portfolio() {
 
       <header className="atmosphere relative min-h-[100svh] overflow-hidden">
         <HeroGlow />
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1100px] flex-col justify-between px-5 pb-7 pt-24 sm:px-8 sm:pb-12 sm:pt-28">
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1100px] flex-col justify-between px-5 pb-10 pt-24 sm:px-8 sm:pb-20 sm:pt-28 lg:pb-24">
           <AnimateIn>
             <div className="flex items-center justify-between gap-3 border-b border-ink/40 pb-4 text-[11px] sm:pb-5 sm:text-xs">
               <span className="flex min-w-0 items-center gap-1.5 sm:gap-2"><MapPin className="shrink-0" size={13} /><span className="truncate">Detroit Metropolitan Area</span></span>
@@ -162,7 +183,7 @@ export default function Portfolio() {
             </div>
           </AnimateIn>
 
-          <div className="py-10 sm:py-16">
+          <div className="py-8 sm:py-12">
             <AnimateIn delay={0.08}>
               <p className="mb-5 max-w-[290px] text-[10px] uppercase leading-5 tracking-[.18em] sm:mb-7 sm:max-w-none sm:text-xs sm:tracking-[.2em]">Full-Stack AI Engineer · MS CS @ UM-Dearborn</p>
               <h1 className="max-w-[1000px] text-[clamp(3.3rem,16vw,4.75rem)] font-medium leading-[.96] tracking-[-.055em] sm:text-[92px] md:text-[122px]">
@@ -175,16 +196,16 @@ export default function Portfolio() {
           </div>
 
           <AnimateIn delay={0.16}>
-            <div className="grid grid-cols-2 border-y border-ink/35 md:grid-cols-3 md:divide-x md:divide-ink/35">
-              <div className="col-span-2 flex items-center gap-3 border-b border-ink/25 py-3.5 md:col-span-1 md:border-b-0 md:py-4 md:pr-5">
+            <div className="grid grid-cols-2 border-y border-ink/30 text-ink/76 md:grid-cols-3 md:divide-x md:divide-ink/24">
+              <div className="col-span-2 flex items-center gap-3 border-b border-ink/18 py-3.5 md:col-span-1 md:border-b-0 md:py-4 md:pr-5">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute h-full w-full animate-ping rounded-full bg-green-500 opacity-70" />
-                  <span className="relative h-2.5 w-2.5 rounded-full bg-green-600" />
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-green-500 opacity-45" />
+                  <span className="relative h-2.5 w-2.5 rounded-full bg-green-500 shadow-[0_0_0_3px_rgba(34,197,94,.1)]" />
                 </span>
                 <span className="text-xs font-medium">Open to opportunities</span>
               </div>
-              <div className="border-r border-ink/25 py-3.5 pr-3 text-[11px] leading-5 md:border-b-0 md:border-r-0 md:px-5 md:py-4 md:text-xs">Previously →<br className="md:hidden" /> <span className="font-semibold">PMA · Akcepted Tech</span></div>
-              <a href="#work" className="flex items-center justify-between gap-2 py-3.5 pl-3 text-[11px] leading-5 md:py-4 md:pl-5 md:text-xs">
+              <div className="border-r border-ink/18 py-3.5 pr-3 text-[11px] font-medium leading-5 md:border-r-0 md:px-5 md:py-4 md:text-xs">Previously →<br className="md:hidden" /> <span className="font-semibold text-ink/82">PMA · Akcepted Tech</span></div>
+              <a href="#work" className="flex items-center justify-between gap-2 py-3.5 pl-3 text-[11px] font-medium leading-5 transition hover:text-ink md:py-4 md:pl-5 md:text-xs">
                 View projects <ArrowDown className="shrink-0" size={14} />
               </a>
             </div>
