@@ -71,13 +71,19 @@ export const credentials = [
     date: "Issued June 2026 · Expires June 2029",
     url: "/credentials/aws-certified-cloud-practitioner.pdf",
   },
+  {
+    title: "Claude 101",
+    issuer: "Anthropic Education",
+    date: "Course completed June 2026",
+    url: "/credentials/anthropic-claude-101.pdf",
+  },
 ];
 
 export const projects: Project[] = [
   {
     slug: "therapy-ai",
     num: "01",
-    title: "therapy.ai",
+    title: "meet.ai",
     description: "An AI-powered video meeting platform with realtime agents, transcription, and intelligent post-call insights.",
     tags: ["Next.js", "OpenAI", "Stream Video", "Inngest"],
     year: "2026",
@@ -92,17 +98,17 @@ export const projects: Project[] = [
     evidence: [
       {
         src: "/project-images/therapy-ai/login.png",
-        alt: "Therapy.ai authentication screen with Google and GitHub sign-in",
+        alt: "meet.ai authentication screen with Google and GitHub sign-in",
         caption: "Branded authentication flow with email, Google, and GitHub sign-in options.",
       },
       {
         src: "/project-images/therapy-ai/meetings-dashboard.png",
-        alt: "Therapy.ai meetings dashboard",
+        alt: "meet.ai meetings dashboard",
         caption: "The real meetings workspace for filtering sessions, managing agents, and starting new meetings.",
       },
     ],
     caseStudy: {
-      overview: "therapy.ai is a full-stack AI meeting platform where configurable OpenAI agents can join live Stream Video calls, followed by automated transcription and AI-powered summaries.",
+      overview: "meet.ai is a full-stack AI meeting platform where configurable OpenAI agents can join live Stream Video calls, followed by automated transcription and AI-powered summaries.",
       role: "Full-Stack AI Engineer",
       timeline: "Independent project",
       team: "Architecture, AI, backend, and frontend",
